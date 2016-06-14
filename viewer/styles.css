@@ -1,0 +1,19 @@
+.cell {
+    border: 1px solid black;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+}
+
+.square-full {
+    background: black;
+}
+
+.square-x {
+    text-align: center;
+}
+
+.main-board-container,
+.line-descriptors-container {
+    border-collapse: collapse;
+}
