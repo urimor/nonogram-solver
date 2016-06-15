@@ -17,7 +17,7 @@ public:
     const std::vector<LineDescriptor> GetColumnDescriptors() const;
 
 private:
-    std::vector<std::vector<PuzzleSquare> > _squares;
+    std::vector<std::vector<PuzzleSquare> > _mainBoard;
     std::vector<LineDescriptor> _rowDescriptors;
     std::vector<LineDescriptor> _columnDescriptors;
 
@@ -25,7 +25,9 @@ private:
 	void deserialize_board(const nlohmann::json json);
 	static std::vector<LineDescriptor> deserialize_descriptors(const nlohmann::json json);
 	static LineDescriptor deserialize_descriptor(const nlohmann::json descriptorJson);
-	void deserialize_squares(nlohmann::json json);
+	static std::vector<std::vector<PuzzleSquare> > deserialize_main_board(nlohmann::json json);
+
+	static const nlohmann::json serialize_main_board(std::vector<std::vector<PuzzleSquare>> squares);
 };
 
 

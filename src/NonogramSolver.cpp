@@ -13,7 +13,7 @@ using Json = nlohmann::json;
 void NonogramSolver::Run() {
     Json boardJson = read_board_from_file("resources/mushroom.json");
     Board board(boardJson);
-    std::cout << "serialized board =  " << endl << board.Serialize().dump(4) << endl;
+    cout << "serialized board =  " << endl << board.Serialize().dump(4) << endl;
 }
 
 Json NonogramSolver::read_board_from_file(string boardJsonFileName) const {

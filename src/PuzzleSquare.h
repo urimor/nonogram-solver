@@ -8,6 +8,8 @@ class PuzzleSquare {
 public:
     enum State {Unknown, Empty, Full, Test};
     PuzzleSquare(State state = Unknown):_state(state){}
+	operator int() const { return (int)_state;}
+	int GetState() const {return (int)_state;}
 protected:
     State _state;
 };
