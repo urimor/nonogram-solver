@@ -5,6 +5,7 @@
 class Common {
 public:
 	static void exit_on_error(std::exception exception, std::string string);
+	static void exit_on_error(std::string error);
 };
 
 
