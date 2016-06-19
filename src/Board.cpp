@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Common.h"
 
 using std::vector;
 using std::string;
@@ -14,7 +15,12 @@ Board::Board(Json boardJson) {
 
 void Board::Init(Json boardJson){
     delete_board();
-	deserialize_board(boardJson);
+	try {
+		deserialize_board(boardJson);
+	}
+	catch (std::domain_error exception){
+		Common::ExitOnError(exception, "Could not deserialize board");
+	}
 }
 
 Json Board::Serialize() const {

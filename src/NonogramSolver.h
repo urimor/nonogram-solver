@@ -6,10 +6,12 @@
 
 class NonogramSolver {
 public:
-    void Run();
+	void Run(const std::string &inputFileName, const std::string &outputFileName);
+
 private:
-    nlohmann::json read_board_from_file(std::string boardJsonFileName) const;
-	void write_board_to_file(Board board ,std::string boardJsonFileName) const;
+	nlohmann::json read_board_from_file(const std::string &boardJsonFileName) const;
+
+	void write_board_to_file(Board board, const std::string &boardJsonFileName) const;
 };
 
 

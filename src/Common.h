@@ -4,8 +4,10 @@
 
 class Common {
 public:
-	static void exit_on_error(std::exception exception, std::string string);
-	static void exit_on_error(std::string error);
+	static void ExitOnError(std::exception exception, std::string string);
+	static void ExitOnError(std::string error);
+	static void ExitIfFilestreamIsNotOpen(std::ifstream &fileStream, std::string fileName);
+	static void ExitIfFilestreamIsNotOpen(std::ofstream &fileStream, std::string fileName);
 };
 
 

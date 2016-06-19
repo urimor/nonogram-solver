@@ -11,24 +11,23 @@ using std::endl;
 using std::string;
 using Json = nlohmann::json;
 
-void NonogramSolver::Run() {
-    Json boardJson = read_board_from_file("resources/mushroom.json");
-    Board board(boardJson);
-    write_board_to_file(board, "viewer/board.json");
+void NonogramSolver::Run(const string &inputFileName, const string &outputFileName) {
+	Json boardJson = read_board_from_file(inputFileName);
+	Board board(boardJson);
+	write_board_to_file(board, outputFileName);
 }
 
-Json NonogramSolver::read_board_from_file(string boardJsonFileName) const {
-    std::ifstream boardJsonFile(boardJsonFileName);
-    string content( (std::istreambuf_iterator<char>(boardJsonFile) ),
-                         (std::istreambuf_iterator<char>()    ) );
-    return Json::parse(content);
+Json NonogramSolver::read_board_from_file(const string &boardJsonFileName) const {
+	std::ifstream boardJsonFile(boardJsonFileName);
+	Common::ExitIfFilestreamIsNotOpen(boardJsonFile, boardJsonFileName);
+	string content((std::istreambuf_iterator<char>(boardJsonFile)),
+	               (std::istreambuf_iterator<char>()));
+	return Json::parse(content);
 }
 
-void NonogramSolver::write_board_to_file(Board board, string boardJsonFileName) const {
-    std::ofstream boardJsonFile(boardJsonFileName);
-    if(!boardJsonFile.is_open()){
-        Common::exit_on_error("NonogramSolver::write_board_to_file - could not open "
-                              + boardJsonFileName + " for writing");
-    }
-    boardJsonFile << board.Serialize().dump(4);
+void NonogramSolver::write_board_to_file(Board board, const string &boardJsonFileName) const {
+	std::ofstream boardJsonFile(boardJsonFileName);
+	Common::ExitIfFilestreamIsNotOpen(boardJsonFile, boardJsonFileName);
+	boardJsonFile << board.Serialize().dump(4);
 }
+
