@@ -17,3 +17,11 @@
 .line-descriptors-container {
     border-collapse: collapse;
 }
+
+.first-row-in-block {
+    border-top: 2px solid black;
+}
+
+.first-column-in-block {
+    border-left: 2px solid black;
+}

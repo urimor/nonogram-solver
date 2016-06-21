@@ -24,30 +24,42 @@ $(document).ready(function documentReady() {
 
         function createColumnDescriptors(){
             var $table = $("<table></table>");
+
             for(var i = 0; i < lengthOfColumnDescriptors ; i++){
                 var $tableRow = $("<tr></tr>");
+                var columnCounter = 0;
                 _(data["column-descriptors"]).forEach(function(descriptor){
                     var $tableCell = $("<td></td>");
                     $tableCell.text(descriptor[i]);
                     $tableCell.addClass("cell descriptor-cell");
+                    if(columnCounter % 5 === 0){
+                        $tableCell.addClass("first-column-in-block");
+                    }
                     $tableRow.append($tableCell);
+                    columnCounter++;
                 })
                 $table.append($tableRow);
                 $table.addClass("line-descriptors-container");
             }
+
             $("#column-descriptors").append($table);
         }
 
         function createRowDescriptors(){
             var $table = $("<table></table>");
+            var rowCounter = 0;
             _(data["row-descriptors"]).forEach(function(descriptor){
                 var $tableRow = $("<tr></tr>");
                 _(descriptor).forEach(function(value){
                     var $tableCell = $("<td></td>");
                     $tableCell.text(value);
                     $tableCell.addClass("cell descriptor-cell");
+                    if(rowCounter % 5 === 0){
+                        $tableCell.addClass("first-row-in-block");
+                    }
                     $tableRow.append($tableCell);
                 })
+                rowCounter++;
                 $table.append($tableRow);
                 $table.addClass("line-descriptors-container");
             })
@@ -56,8 +68,10 @@ $(document).ready(function documentReady() {
 
         function createMainBoard(){
             var $table = $("<table></table>");
+            var rowCounter = 0;
             _(data["main-board"]).forEach(function(row){
                 var $tableRow = $("<tr></tr>");
+                var columnCounter = 0;
                 _(row).forEach(function(square){
                     var $tableCell = $("<td></td>");
                     switch (square){
@@ -74,8 +88,16 @@ $(document).ready(function documentReady() {
                             $tableCell.addClass("cell square-x");
                             break;
                     }
+                    if(rowCounter % 5 === 0){
+                        $tableCell.addClass("first-row-in-block");
+                    }
+                    if(columnCounter % 5 === 0){
+                        $tableCell.addClass("first-column-in-block");
+                    }
+                    columnCounter++;
                     $tableRow.append($tableCell);
                 })
+                rowCounter++;
                 $table.append($tableRow);
                 $table.addClass("main-board-container");
             })
